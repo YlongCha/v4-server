@@ -1,9 +1,10 @@
-import { Context } from 'koa';
-import bodyParser from 'koa-bodyparser';
-import heroesRouter from './routers/heroesRouter';
-import pool from './dbconfig/dbconnector';
-import Koa from 'koa';
-import cors from '@koa/cors';
+import { Context } from "koa";
+import bodyParser from "koa-bodyparser";
+import heroesRouter from "./routers/heroesRouter";
+import pool from "./dbconfig/dbconnector";
+import Koa from "koa";
+import cors from "@koa/cors";
+var serve = require("koa-static");
 
 class Server {
   private app;
@@ -19,14 +20,14 @@ class Server {
     this.app.use(
       cors({
         origin: function (ctx) {
-          return ctx.request.headers.origin || '*';
+          return ctx.request.headers.origin || "*";
         },
-        exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+        exposeHeaders: ["WWW-Authenticate", "Server-Authorization"],
         maxAge: 5,
         credentials: true,
         /* allowMethods: ['GET', 'POST', 'DELETE'], -- use default */
-        allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
-      }),
+        allowHeaders: ["Content-Type", "Authorization", "Accept"],
+      })
     );
     this.app.use(bodyParser());
   }
@@ -34,11 +35,12 @@ class Server {
   private dbConnect() {
     pool.connect(function (err: any, client: any, done: any) {
       if (err) throw new Error(err);
-      console.log('Connected');
+      console.log("Connected");
     });
   }
 
   private routerConfig() {
+    this.app.use(serve("./public"));
     this.app.use(heroesRouter.routes()).use(heroesRouter.allowedMethods());
   }
 
@@ -48,7 +50,7 @@ class Server {
         .listen(port, () => {
           resolve(port);
         })
-        .on('error', (err: Object) => reject(err));
+        .on("error", (err: Object) => reject(err));
     });
   };
 }

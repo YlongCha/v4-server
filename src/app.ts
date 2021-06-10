@@ -1,6 +1,6 @@
-import { Server } from './server';
+import { Server } from "./server";
 
-const port = parseInt(process.env.PORT || '4000');
+const port = parseInt(process.env.PORT || "3001");
 
 const starter = new Server()
   .start(port)
