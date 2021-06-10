@@ -1,0 +1,13 @@
+{
+  "include":["scr/.ts"],
+  "exclude":["node_modules"],
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist/src"
+  },
+  "lib":["es2015"]
+}
