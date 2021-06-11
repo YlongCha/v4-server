@@ -8,6 +8,6 @@ const heroesController = new HeroesController();
 
 heroesRouter.get("/hero/:name", heroesController.searchHero);
 heroesRouter.get("/guild/:name", heroesController.searchGuild);
-heroesRouter.get("/server/:name", heroesController.serverInfoQuery);
+heroesRouter.get("/server/:name", heroesController.serverInfo);
 
 export default heroesRouter;

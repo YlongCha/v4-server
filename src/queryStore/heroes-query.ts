@@ -122,3 +122,49 @@ export const guildInfoQuery = function (name) {
   select * from target_guild,guild_rank
 `;
 };
+
+export const saveHeroesQuery = function (userInfo) {
+  return `
+  INSERT INTO
+  heroes
+  (
+    n8_id,
+    d_kst,
+    n4_search_realm,
+    n4_search_class,
+    ranking,
+    is_new,
+    diff_ranking,
+    combat_power,
+    realm_id,
+    realm_name,
+    class_id,
+    class_name,
+    character_id,
+    character_name,
+    character_level,
+    guild_id,
+    guild_name
+  )
+  VALUES
+  (
+    '${userInfo.n8Id}',
+    '${userInfo.dKst}',
+    '${userInfo.n4SearchRealm}',
+    '${userInfo.n4SearchClass}',
+    '${userInfo.ranking}',
+    '${userInfo.isNew}',
+    '${userInfo.diffRanking}',
+    '${userInfo.combatPower}',
+    '${userInfo.realmId}',
+    '${userInfo.realmName}',
+    '${userInfo.classId}',
+    '${userInfo.className}',
+    '${userInfo.characterId}',
+    '${userInfo.characterName}',
+    '${userInfo.characterLevel}',
+    '${userInfo.guildId}',
+    '${userInfo.guildName}'
+    ) RETURNING *
+  `;
+};
