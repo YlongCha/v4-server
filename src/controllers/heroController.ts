@@ -1,5 +1,6 @@
 import pool from "../dbconfig/dbconnector";
 import * as fetch from "node-fetch";
+import { Context } from "koa";
 import {
   searchHeroQuery,
   guildInfoQuery,
@@ -8,7 +9,7 @@ import {
 } from "../queryStore/heroes-query";
 import { SERVERLIST, SERVERNAMES, JOBLIST } from "../static/static";
 class HeroesController {
-  public async searchHero(ctx) {
+  public async searchHero(ctx: Context) {
     try {
       const sql = searchHeroQuery(ctx.params.name);
       const { rows } = await pool.query(sql);
@@ -18,7 +19,7 @@ class HeroesController {
       ctx.status = 404;
     }
   }
-  public async searchGuild(ctx) {
+  public async searchGuild(ctx: Context) {
     try {
       const guildInfoSql = guildInfoQuery(ctx.params.name);
       const guildInfo = await pool.query(guildInfoSql);
@@ -28,7 +29,7 @@ class HeroesController {
       ctx.status = 404;
     }
   }
-  public async serverInfo(ctx) {
+  public async serverInfo(ctx: Context) {
     try {
       const serverInfoSql = serverInfoQuery(ctx.params.name);
       const serverInfo = await pool.query(serverInfoSql);
@@ -38,7 +39,7 @@ class HeroesController {
       ctx.status = 404;
     }
   }
-  public async saveHeroes(ctx) {
+  public async saveHeroes(ctx: Context) {
     try {
       SERVERLIST.forEach((server) => {
         JOBLIST.forEach((job) => {
@@ -59,7 +60,7 @@ class HeroesController {
     }
   }
 }
-const getHeroes = async (job, server, date) => {
+const getHeroes = async (job: String, server: String, date: String) => {
   const heroes = await fetch(
     "https://v4api.nexon.com/api/krgame/ranking/top100",
     {

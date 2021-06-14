@@ -7,7 +7,7 @@ import cors from "@koa/cors";
 var serve = require("koa-static");
 
 class Server {
-  private app;
+  private app: Koa;
 
   constructor() {
     this.app = new Koa();

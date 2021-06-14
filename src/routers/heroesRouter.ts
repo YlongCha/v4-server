@@ -1,5 +1,4 @@
 import Router from "koa-router";
-import { Context } from "koa";
 import HeroesController from "../controllers/heroController";
 import pool from "../dbconfig/dbconnector";
 
