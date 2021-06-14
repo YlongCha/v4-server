@@ -1,5 +1,5 @@
 import pool from "../dbconfig/dbconnector";
-import * as fetch from "node-fetch";
+import fetch from "node-fetch";
 import { Context } from "koa";
 import {
   searchHeroQuery,
