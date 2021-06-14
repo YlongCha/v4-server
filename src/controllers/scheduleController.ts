@@ -1,5 +1,5 @@
 import pool from "../dbconfig/dbconnector";
-import * as fetch from "node-fetch";
+import fetch from "node-fetch";
 import { saveHeroesQuery } from "../queryStore/heroes-query";
 import { SERVERLIST, JOBLIST } from "../static/static";
 
