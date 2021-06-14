@@ -45,7 +45,7 @@ class HeroesController {
         JOBLIST.forEach((job) => {
           getHeroes(job, server, ctx.params.date).then(async (res) => {
             await Promise.all(
-              res.ResultData.map(async (hero) => {
+              res.ResultData.map(async (hero: Object) => {
                 const serverInfoSql = saveHeroesQuery(hero);
                 const serverInfo = await pool.query(serverInfoSql);
               })
